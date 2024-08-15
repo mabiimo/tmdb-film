@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const HeroCard = () => {
+const HeroCard = ({ onCardClick }) => { // Terima prop onCardClick
   const [movies, setMovies] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NjY4YzNjNDI0Njc5NDJlYzgwM2FlOTJhNTZmOWEwYyIsIm5iZiI6MTcyMzQ1NDUwNy45Mzg0LCJzdWIiOiI2NDBlYWFlZWUxOGUzZjA3YWM1MjE4YzYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AR6YcxK3kxjuDjmPIMPdOeiERvOGsYj-loXsUSlWfYk";
+ const token = process.env.REACT_FILM_APP_TOKEN
+ const baseurl = process.env.REACT_FILM_APP_BASE_URL
 
   useEffect(() => {
     axios
@@ -13,10 +13,10 @@ const HeroCard = () => {
           Authorization: `Bearer ${token}`,
         },
         method: "GET",
-        url: `https://api.themoviedb.org/3/movie/popular`,
+        url: `${baseurl}/popular`,
       })
       .then((response) => {
-        setMovies(response.data.results.slice(0, 5)); // Limit to 5 items for the carousel
+        setMovies(response.data.results.slice(0, 5)); 
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
@@ -30,8 +30,9 @@ const HeroCard = () => {
     >
       {movies.map((movie) => (
         <div 
-          className="relative group mt-[-30px] "
+        className="relative group mt-[-30px] cursor-pointer hover:opacity-80 transition-opacity duration-300"
           key={movie.id}
+          onClick={() => onCardClick(movie)} // Handle click event
         >
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
