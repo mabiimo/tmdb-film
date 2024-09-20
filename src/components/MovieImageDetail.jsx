@@ -31,17 +31,18 @@ const MovieImageDetail = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="flex mr-6 items-center justify-center text-center px-10 gap-5 mt-[-15px] ">
-      {images.map((image) => (
-        <div key={image.file_path} className="relative group ">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
-            alt={`Backdrop of movie ${movieId}`}
-            className="w-[300px] rounded-lg transition-transform duration-300 group-hover:opacity-70"
-          />
-        </div>
-      ))}
+    <div className="flex flex-wrap justify-center items-center text-center px-4 gap-5 mt-[-15px]">
+  {images.map((image) => (
+    <div key={image.file_path} className="relative group">
+      <img
+        src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+        alt={`Backdrop of movie ${movieId}`}
+        className="w-[100px] sm:w-[250px] md:w-[300px] rounded-lg transition-transform duration-300 group-hover:opacity-70"
+      />
     </div>
+  ))}
+</div>
+
   );
 };
 

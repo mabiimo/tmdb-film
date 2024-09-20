@@ -36,23 +36,22 @@ const MovieVideosDetail = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="flex mr-6 items-center justify-left text-center px-10 gap-5 mt-[15px]">
-      {videos.map((video) => (
-        <div key={video.id} className="relative group">
-          
-            <div className="relative">
-            <iframe
-            src={`https://www.youtube.com/embed/${video.key}`}
-            title={video.name}
-            className="w-[300px] rounded-lg transition-transform duration-300 group-hover:opacity-70"
-            frameBorder="0"
-            allowFullScreen
-          />
-              
-            </div>
-        </div>
-      ))}
+    <div className="flex flex-wrap  justify-center items-center text-center justify-start items-center text-center align-center px-4 gap-5 mt-4">
+  {videos.map((video) => (
+    <div key={video.id} className="relative group">
+      <div className="relative">
+        <iframe
+          src={`https://www.youtube.com/embed/${video.key}`}
+          title={video.name}
+          className="w-full max-w-[150px] rounded-lg transition-transform duration-300 group-hover:opacity-70"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </div>
     </div>
+  ))}
+</div>
+
   );
 };
 

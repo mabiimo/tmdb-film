@@ -14,16 +14,17 @@ const NowPlaying = () => {
     loadMovies();
   }, []);
   return (
-    <div className="p-10">
-      <p className="text-left mb-4 text-white poppins-bold text-lg">
-        Now Playing
-      </p>
-      <div className="grid grid-cols-6 gap-4">
-        {movies.map((movie) => (
-          <PosterCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+    <div className="p-5 md:p-10">
+    <p className="text-left mb-4 text-white poppins-bold text-lg">
+      Now Playing
+    </p>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      {movies.map((movie) => (
+        <PosterCard key={movie.id} movie={movie} />
+      ))}
     </div>
+  </div>
+  
   );
 };
 
